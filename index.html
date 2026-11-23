@@ -711,7 +711,7 @@ form .btn{margin-top:20px}
 
  // mapa ladowana przy przewinieciu
  var m=document.getElementById('mapa');
- function mapa(){if(m.dataset.ok)return;m.dataset.ok=1;m.innerHTML='';var f=document.createElement('iframe');f.title='Mapa dojazdu: ul. Wapienna 10, Opole';f.loading='lazy';f.referrerPolicy='no-referrer-when-downgrade';f.src='https://maps.google.com/maps?q=Wapienna%2010%2C%2045-347%20Opole&z=15&output=embed';m.appendChild(f)}
+ function mapa(){if(m.dataset.ok)return;m.dataset.ok=1;m.innerHTML='';var f=document.createElement('iframe');f.title='Mapa dojazdu: ul. Wapienna 10, Opole';f.loading='lazy';f.referrerPolicy='no-referrer-when-downgrade';f.src='https://maps.google.com/maps?q=Sala%20zabaw%20Fajne%20Miejsce%2C%20Wapienna%2010%2C%2045-347%20Opole&z=15&output=embed';m.appendChild(f)}
  if('IntersectionObserver' in window){new IntersectionObserver(function(e,o){if(e[0].isIntersecting){mapa();o.disconnect()}},{rootMargin:'300px'}).observe(m)}else mapa();
 
  // formularz pokazowy
