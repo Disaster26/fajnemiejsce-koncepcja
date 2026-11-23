@@ -669,7 +669,7 @@ form .btn{margin-top:20px}
  var links=[].slice.call(document.querySelectorAll('#nav a[href^="#"]'));
  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
  function akt(){var y=scrollY+innerHeight*.35,c=-1;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)c=i});links.forEach(function(a,i){a.classList.toggle('on',i===c)})}
- addEventListener('scroll',akt,{passive:true});akt();
+ var tk=0;addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(function(){tk=0;akt()})}},{passive:true});addEventListener('load',function(){requestAnimationFrame(akt)});
 
  // dolny pasek po przewinieciu za przyciski
  var mob=document.getElementById('mob'),cta=document.getElementById('hero-cta');
@@ -689,7 +689,7 @@ form .btn{margin-top:20px}
   addEventListener('pointermove',function(e){if(!dr)return;var d=e.clientX-x0;if(Math.abs(d)>5)moved=true;t.scrollLeft=s0-d});
   addEventListener('pointerup',function(){if(!dr)return;dr=false;t.classList.remove('drag');var w=t.clientWidth,i=Math.round(t.scrollLeft/w);laduj((sl[i]||{}).querySelector&&sl[i].querySelector('img'));t.scrollTo({left:i*w,behavior:'smooth'})});
   t.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;return}var bt=e.target.closest('button');if(bt)otworz(sl.map(function(s){return{src:s.dataset.full,cap:k.dataset.g}}),sl.indexOf(bt))},true);
-  upd();
+  requestAnimationFrame(upd);
  });
  // doladowanie kolejnego zdjecia, gdy karta wchodzi w ekran
  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var im=e.target.querySelectorAll('.tor img');laduj(im[1]);io.unobserve(e.target)}})},{rootMargin:'200px'});document.querySelectorAll('.kar').forEach(function(k){io.observe(k)})}
